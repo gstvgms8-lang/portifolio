@@ -11,7 +11,7 @@ export const projects = [
     features: ['Checklist de carga e descarga', 'Registro de ocorrências operacionais', 'Observações por etapa', 'Pendências para acompanhamento', 'Visualização mobile e desktop'],
     tech: ['Flutter', 'Flutter Web', 'Android', 'Site Desktop', 'Web Demo'],
     demoPath: '/demos/check-empilhadeira',
-    demoEmbedPath: '/demos/checklist%20e%20gerenciamento/index.html'
+    demoEmbedPath: '/demos/checklist-e-gerenciamento/index.html'
   },
   {
     slug: 'sistema-fiscal',
@@ -25,7 +25,7 @@ export const projects = [
     features: ['Auditoria de inventário', 'Conferência de produtos', 'Análise de divergências', 'Filtros por categoria e status', 'Relatórios operacionais'],
     tech: ['Flutter Desktop', 'Dart', 'Inventário', 'Gestão de Estoque', 'Web Demo'],
     demoPath: '/demos/sistema-fiscal',
-    demoEmbedPath: '/demos/auditoria%20de%20inventario/index.html',
+    demoEmbedPath: '/demos/auditoria-de-inventario/index.html',
     demoDefaultView: 'desktop'
   },
   {
@@ -40,7 +40,7 @@ export const projects = [
     features: ['Contagem física de estoque', 'Auditoria por produto', 'Registro de divergências', 'Histórico de conferências', 'Uso em celular Android'],
     tech: ['Flutter', 'Dart', 'Android', 'Inventário', 'Web Demo'],
     demoPath: '/demos/app-inventario',
-    demoEmbedPath: '/demos/app%20inventario/index.html',
+    demoEmbedPath: '/demos/app-inventario/index.html',
     demoViews: ['mobile']
   },
   {

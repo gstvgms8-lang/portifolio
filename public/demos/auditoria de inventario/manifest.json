@@ -1,9 +1,0 @@
-{
-  "name": "FlowDesk Showcase",
-  "short_name": "FlowDesk",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#E8EDF4",
-  "theme_color": "#182235",
-  "description": "Demo ficticia para portfolio com dados locais inventados."
-}

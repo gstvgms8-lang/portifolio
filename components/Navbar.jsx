@@ -14,7 +14,7 @@ export default function Navbar() {
           <Link href="/#tecnologias">Tecnologias</Link>
           <Link href="/#contato">Contato</Link>
         </nav>
-        <a className="btn btn-primary" href="https://wa.me/5500000000000" target="_blank" rel="noreferrer">WhatsApp</a>
+        <a className="btn btn-primary" href="mailto:gstvgms8@gmail.com">E-mail</a>
       </div>
     </header>
   );

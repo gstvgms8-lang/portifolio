@@ -1,29 +1,47 @@
 export const projects = [
   {
     slug: 'check-empilhadeira',
-    icon: '🚜',
-    title: 'Check Empilhadeira',
-    category: 'App Mobile Industrial',
-    headline: 'Checklist operacional com controle de avarias, pendências e histórico digital.',
-    description: 'Aplicativo demonstrativo para inspeção diária de máquinas, pensado para operações industriais e logísticas.',
-    problem: 'Checklists em papel dificultam histórico, rastreabilidade e acompanhamento de inconformidades.',
-    solution: 'Um app mobile com abertura de checklist, finalização de turno, registro de avarias, fotos e gestão de pendências.',
-    features: ['Checklist por máquina', 'Registro de avarias', 'Pendências de manutenção', 'Histórico por operador', 'Dados fictícios para demonstração'],
-    tech: ['Flutter', 'Supabase', 'PostgreSQL', 'Android', 'Web Demo'],
-    demoPath: '/demos/check-empilhadeira'
+    icon: '📋',
+    title: 'Checklist Operacional de Carga e Descarga',
+    category: 'App Mobile e Site Operacional',
+    headline: 'Checklist digital para conferência, ocorrências, pendências e histórico de carga e descarga.',
+    description: 'Demonstração para equipes de recebimento, expedição e logística acompanharem a operação pelo app mobile ou pela versão web desktop.',
+    problem: 'Checklists em papel e anotações soltas dificultam a conferência da carga, o registro de ocorrências e a rastreabilidade do processo.',
+    solution: 'Um checklist operacional com etapas de carga e descarga, observações por item, controle de pendências e histórico digital para consulta rápida.',
+    features: ['Checklist de carga e descarga', 'Registro de ocorrências operacionais', 'Observações por etapa', 'Pendências para acompanhamento', 'Visualização mobile e desktop'],
+    tech: ['Flutter', 'Flutter Web', 'Android', 'Site Desktop', 'Web Demo'],
+    demoPath: '/demos/check-empilhadeira',
+    demoEmbedPath: '/demos/checklist%20e%20gerenciamento/index.html'
   },
   {
     slug: 'sistema-fiscal',
-    icon: '📊',
-    title: 'Gestor Fiscal',
+    icon: '📦',
+    title: 'Gestão de Estoque',
     category: 'Sistema Desktop Empresarial',
-    headline: 'Consulta fiscal, análise de notas e relatórios para gestão operacional.',
-    description: 'Modelo demonstrativo de sistema desktop para análise fiscal e apoio ao controle de estoque.',
-    problem: 'Empresas precisam consultar grande volume de notas fiscais e identificar divergências com rapidez.',
-    solution: 'Sistema desktop com API local, filtros, cache, consulta de entradas e saídas e visualização organizada dos dados.',
-    features: ['Consulta de NF-e', 'Filtros por cliente', 'Notas canceladas destacadas', 'Cache local', 'Relatórios gerenciais'],
-    tech: ['Flutter Desktop', 'FastAPI', 'SQL Server', 'Python', 'API Local'],
-    demoPath: '/demos/sistema-fiscal'
+    headline: 'Auditoria de inventário, conferência de produtos e acompanhamento de divergências em estoque.',
+    description: 'Modelo demonstrativo de sistema desktop para apoiar inventários, conferências operacionais e análise de diferenças entre estoque físico e sistema.',
+    problem: 'Inventários feitos em planilhas ou controles separados dificultam a comparação dos saldos, o acompanhamento das divergências e a tomada de decisão.',
+    solution: 'Sistema desktop com painéis de auditoria, filtros por produto, resumo de divergências, histórico de conferência e visualização organizada dos itens analisados.',
+    features: ['Auditoria de inventário', 'Conferência de produtos', 'Análise de divergências', 'Filtros por categoria e status', 'Relatórios operacionais'],
+    tech: ['Flutter Desktop', 'Dart', 'Inventário', 'Gestão de Estoque', 'Web Demo'],
+    demoPath: '/demos/sistema-fiscal',
+    demoEmbedPath: '/demos/auditoria%20de%20inventario/index.html',
+    demoDefaultView: 'desktop'
+  },
+  {
+    slug: 'app-inventario',
+    icon: '📱',
+    title: 'Inventário Mobile',
+    category: 'App Mobile de Inventário',
+    headline: 'Contagem física, auditoria de estoque e registro de divergências pelo celular.',
+    description: 'Aplicativo mobile demonstrativo para equipes realizarem contagens físicas, auditorias de estoque e conferências de produtos diretamente no celular.',
+    problem: 'A contagem física em papel ou planilhas paralelas torna o inventário mais lento, aumenta retrabalho e dificulta a conferência das divergências.',
+    solution: 'Um app mobile para registrar contagens, acompanhar itens auditados, comparar quantidades e organizar pendências encontradas durante o inventário.',
+    features: ['Contagem física de estoque', 'Auditoria por produto', 'Registro de divergências', 'Histórico de conferências', 'Uso em celular Android'],
+    tech: ['Flutter', 'Dart', 'Android', 'Inventário', 'Web Demo'],
+    demoPath: '/demos/app-inventario',
+    demoEmbedPath: '/demos/app%20inventario/index.html',
+    demoViews: ['mobile']
   },
   {
     slug: 'restaurante-delivery',
@@ -34,22 +52,11 @@ export const projects = [
     description: 'Demonstração comercial para pizzarias, lanchonetes e restaurantes que querem vender sem depender apenas de marketplaces.',
     problem: 'Muitos estabelecimentos pagam taxas altas e não têm controle total sobre seus pedidos e clientes.',
     solution: 'Site próprio com cardápio digital, carrinho, envio de pedidos, painel e identidade personalizada.',
-    features: ['Cardápio online', 'Carrinho de pedidos', 'Pedido pelo WhatsApp', 'Painel da cozinha', 'Gestão de produtos'],
-    tech: ['Next.js', 'Node.js', 'React', 'PostgreSQL', 'WhatsApp API'],
-    demoPath: '/demos/restaurante-delivery'
-  },
-  {
-    slug: 'ravenwood',
-    icon: '🎮',
-    title: 'Ravenwood',
-    category: 'Jogo Mobile',
-    headline: 'Jogo narrativo com atmosfera psicológica, eventos e exploração em 2D.',
-    description: 'Projeto criativo demonstrando domínio de lógica, cenas, áudio, eventos e interação em tempo real.',
-    problem: 'Jogos narrativos exigem organização de estados, eventos, assets e experiência visual consistente.',
-    solution: 'Protótipo em Flutter/Flame com cenas, transições, áudio, personagens e narrativa interativa.',
-    features: ['Sistema de eventos', 'Cenas interativas', 'Áudio ambiente', 'Narrativa psicológica', 'Controles mobile'],
-    tech: ['Flutter', 'Flame', 'Dart', 'Android', 'Game Design'],
-    demoPath: '/demos/ravenwood'
+    features: ['Cardápio online', 'Carrinho de pedidos', 'Pedido online', 'Painel da cozinha', 'Gestão de produtos'],
+    tech: ['Next.js', 'Node.js', 'React', 'PostgreSQL', 'Painel Admin'],
+    demoPath: '/demos/restaurante-delivery',
+    status: 'development',
+    statusLabel: 'Demonstrativo em desenvolvimento'
   }
 ];
 

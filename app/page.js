@@ -4,6 +4,9 @@ import ProjectCard from '../components/ProjectCard';
 import { projects } from '../data/projects';
 
 export default function HomePage() {
+  const availableDemos = projects.filter((project) => project.demoEmbedPath);
+  const developmentProjects = projects.filter((project) => project.status === 'development');
+
   return (
     <>
       <Navbar />
@@ -12,34 +15,38 @@ export default function HomePage() {
           <div className="container hero-grid">
             <div>
               <span className="badge">⚡ Apps, sites, sistemas desktop e soluções sob medida</span>
-              <h1>Desenvolvimento de <span className="gradient-text">sistemas reais</span> para problemas reais.</h1>
+              <h1>Sistemas sob medida para <span className="gradient-text">operações reais.</span></h1>
               <p>
                 Portfólio profissional em formato de vitrine comercial, apresentando projetos mobile,
                 web, desktop, integrações, automações e demonstrações funcionais com dados fictícios.
               </p>
               <div className="hero-actions">
                 <a className="btn btn-primary" href="#projetos">Ver projetos</a>
-                <a className="btn" href="#contato">Falar sobre um sistema</a>
+                <a className="btn" href="mailto:gstvgms8@gmail.com">Enviar e-mail</a>
               </div>
             </div>
-            <div className="mockup">
+            <div className="mockup demo-showcase">
               <div className="mockup-top"><span className="dot"/><span className="dot"/><span className="dot"/></div>
-              <div className="dashboard">
-                <div className="dash-card">
-                  <strong>Check Empilhadeira</strong>
-                  <div className="dash-row"><span>Pendências abertas</span><b>07</b></div>
-                  <div className="progress"><span style={{ width: '72%' }} /></div>
-                </div>
-                <div className="dash-card">
-                  <strong>Gestor Fiscal</strong>
-                  <div className="dash-row"><span>Notas processadas</span><b>1.248</b></div>
-                  <div className="progress"><span style={{ width: '86%' }} /></div>
-                </div>
-                <div className="dash-card">
-                  <strong>Delivery Restaurante</strong>
-                  <div className="dash-row"><span>Pedidos do dia</span><b>42</b></div>
-                  <div className="progress"><span style={{ width: '58%' }} /></div>
-                </div>
+              <div className="demo-showcase-head">
+                <span className="eyebrow">Demos disponíveis</span>
+                <strong>{availableDemos.length} projetos para conferir</strong>
+              </div>
+              <div className="demo-list">
+                {availableDemos.map((project, index) => (
+                  <a className="demo-list-item" href={project.demoPath} key={project.slug}>
+                    <span className="demo-list-index">{String(index + 1).padStart(2, '0')}</span>
+                    <span className="demo-list-icon">{project.icon}</span>
+                    <span>
+                      <strong>{project.title}</strong>
+                      <small>{project.category}</small>
+                    </span>
+                    <b>Abrir demo</b>
+                  </a>
+                ))}
+              </div>
+              <div className="demo-development-note">
+                <span>Em desenvolvimento</span>
+                <strong>{developmentProjects.map((project) => project.title).join(', ')}</strong>
               </div>
             </div>
           </div>
@@ -95,7 +102,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="tags">
-              {['Node.js', 'Next.js', 'React', 'Flutter', 'Dart', 'FastAPI', 'Python', 'Supabase', 'PostgreSQL', 'SQL Server', 'APIs REST', 'Vercel'].map((item) => <span className="tag" key={item}>{item}</span>)}
+              {['Node.js', 'Next.js', 'React', 'Flutter', 'Dart', 'FastAPI', 'Python', 'Supabase', 'PostgreSQL', 'SQL Server', 'APIs REST', 'Vercel', 'OpenAI GPT', 'Codex', 'ChatGPT', 'Automação com IA'].map((item) => <span className="tag" key={item}>{item}</span>)}
             </div>
           </div>
         </section>
@@ -106,8 +113,7 @@ export default function HomePage() {
             <h2>Tem uma ideia de sistema?</h2>
             <p>Este portfólio foi criado para apresentar habilidades práticas em desenvolvimento de sistemas empresariais, apps mobile, sites, integrações e soluções personalizadas.</p>
             <div className="hero-actions">
-              <a className="btn btn-primary" href="https://wa.me/5500000000000" target="_blank" rel="noreferrer">Chamar no WhatsApp</a>
-              <a className="btn" href="mailto:seuemail@exemplo.com">Enviar e-mail</a>
+              <a className="btn btn-primary" href="mailto:gstvgms8@gmail.com">gstvgms8@gmail.com</a>
             </div>
           </div>
         </section>

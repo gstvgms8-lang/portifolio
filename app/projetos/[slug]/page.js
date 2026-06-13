@@ -35,7 +35,11 @@ export default function ProjectPage({ params }) {
             <h1>{project.title}</h1>
             <p>{project.headline}</p>
             <div className="hero-actions">
-              <Link className="btn btn-primary" href={project.demoPath}>Abrir demonstração</Link>
+              {project.status === 'development' ? (
+                <span className="btn btn-disabled">{project.statusLabel}</span>
+              ) : (
+                <Link className="btn btn-primary" href={project.demoPath}>Abrir demonstração</Link>
+              )}
               <Link className="btn" href="/#projetos">Voltar aos projetos</Link>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Navbar from '../../../components/Navbar';
 import Footer from '../../../components/Footer';
+import DemoViewer from '../../../components/DemoViewer';
 import { getProject, projects } from '../../../data/projects';
 
 export function generateStaticParams() {
@@ -36,19 +37,7 @@ export default function DemoPage({ params }) {
         </section>
         <section>
           <div className="container demo-frame">
-            <div className="demo-placeholder">
-              <div>
-                <div className="project-icon">{project.icon}</div>
-                <h2>Área reservada para Flutter Web</h2>
-                <p>
-                  Depois que você gerar o build web do app Flutter, coloque os arquivos dentro de
-                  <strong> /site/public/demos/{project.slug}</strong> e troque este placeholder por um iframe ou link direto.
-                </p>
-                <div className="tags">
-                  {project.tech.map((tech) => <span className="tag" key={tech}>{tech}</span>)}
-                </div>
-              </div>
-            </div>
+            <DemoViewer project={project} />
           </div>
         </section>
       </main>

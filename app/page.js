@@ -1,6 +1,7 @@
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ProjectCard from '../components/ProjectCard';
+import VisitorCounter from '../components/VisitorCounter';
 import { projects } from '../data/projects';
 
 export default function HomePage() {
@@ -24,6 +25,7 @@ export default function HomePage() {
                 <a className="btn btn-primary" href="#projetos">Ver projetos</a>
                 <a className="btn" href="mailto:gstvgms8@gmail.com">Enviar e-mail</a>
               </div>
+              <VisitorCounter />
             </div>
             <div className="mockup demo-showcase">
               <div className="mockup-top"><span className="dot"/><span className="dot"/><span className="dot"/></div>
@@ -114,6 +116,7 @@ export default function HomePage() {
             <p>Este portfólio foi criado para apresentar habilidades práticas em desenvolvimento de sistemas empresariais, apps mobile, sites, integrações e soluções personalizadas.</p>
             <div className="hero-actions">
               <a className="btn btn-primary" href="mailto:gstvgms8@gmail.com">gstvgms8@gmail.com</a>
+              <a className="btn" href="https://www.linkedin.com/in/gustavo-vieira-237150166?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noreferrer">LinkedIn</a>
             </div>
           </div>
         </section>

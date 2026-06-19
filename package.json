@@ -1,23 +1,19 @@
 {
-  "name": "meu-portifolio",
-  "version": "1.0.0",
-  "private": true,
+  "name": "central-apresentacao-sistemas",
+  "version": "3.0.0",
+  "description": "Site seguro em Node.js para apresentacao de produtos finais em Flutter Web mobile e desktop.",
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
-  "dependencies": {
-    "@next/font": "latest",
-    "framer-motion": "^11.18.2",
-    "lucide-react": "^0.468.0",
-    "next": "^14.2.23",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.57.1",
-    "eslint-config-next": "^14.2.23"
-  }
+  "keywords": [
+    "nodejs",
+    "apresentacao",
+    "produto-final",
+    "flutter-web",
+    "fullscreen"
+  ],
+  "author": "Gustavo Vieira",
+  "license": "MIT"
 }

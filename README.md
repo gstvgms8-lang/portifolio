@@ -1,72 +1,74 @@
-# meu_portifolio
+# Central de Apresentacao de Produtos Finais
 
-Portfólio profissional em Node.js/Next.js para apresentar projetos web, mobile, desktop e demos em Flutter Web.
+Projeto Node.js sem dependencias externas, preparado para apresentar produtos finais em Flutter Web dentro de molduras mobile e desktop.
 
 ## Como rodar
 
 ```bash
-cd site
-npm install
+node server.js
+```
+
+ou:
+
+```bash
 npm run dev
 ```
 
-Acesse:
+Nao precisa rodar `npm install`.
+
+## Acesso padrao
+
+- Usuario: `gustavo`
+- Senha: `123456`
+- Chave de seguranca: `CHECK-2026`
+
+## Onde colocar os builds Flutter Web
+
+Os builds finais devem ficar nestas pastas:
 
 ```txt
-http://localhost:3000
+public/mobile/web/
+public/mobile/web2/
+public/desktop/web/
 ```
 
-## Estrutura
+Copie o conteudo de cada `build/web` para a pasta correspondente.
+
+## Ajuste importante do Flutter
+
+Antes de gerar o build, ou depois copiando o arquivo final, confira o `base href` do `web/index.html`.
+
+Mobile:
+
+```html
+<base href="/mobile/web/">
+```
+
+Desktop:
+
+```html
+<base href="/desktop/web/">
+```
+
+## Onde trocar os links
+
+Os links exibidos na tela de projeto ficam em:
 
 ```txt
-meu_portifolio/
-  site/                 # Projeto Next.js / Node.js
-    app/                # Páginas do site
-    components/         # Componentes reutilizáveis
-    data/projects.js    # Lista dos projetos exibidos
-    public/demos/       # Futuro local dos builds Flutter Web
+data/projetos.json
 ```
 
-## Onde editar seus projetos
+Os campos principais sao:
 
-Edite o arquivo:
-
-```txt
-site/data/projects.js
+```json
+"mobileUrl": "/mobile/web/",
+"desktopUrl": "/desktop/web/"
 ```
 
-## Demos Flutter Web
+Para projetos somente mobile, use apenas `mobileUrl`, como:
 
-Para gerar uma demo Flutter Web:
-
-```bash
-flutter build web --release
+```json
+"mobileUrl": "/mobile/web2/"
 ```
 
-Depois copie o conteúdo de:
-
-```txt
-build/web
-```
-
-para uma pasta dentro de:
-
-```txt
-site/public/demos/nome-da-demo
-```
-
-## Deploy na Vercel
-
-Na Vercel, configure o diretório raiz do projeto como:
-
-```txt
-site
-```
-
-Build command:
-
-```bash
-npm run build
-```
-
-Output padrão do Next.js.
+O visual das molduras fica em `public/assets/css/styles.css`, e a troca entre app mobile e portal desktop fica em `public/assets/js/app.js`.

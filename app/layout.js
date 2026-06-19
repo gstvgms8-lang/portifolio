@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+import VisitTracker from '../components/VisitTracker';
 import './globals.css';
 
 export const metadata = {
@@ -11,7 +13,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={null}>
+          <VisitTracker />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }

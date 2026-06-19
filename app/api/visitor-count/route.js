@@ -1,21 +1,22 @@
-const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
-
 export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 
 async function callSupabaseRpc(functionName) {
-  if (!SUPABASE_URL || !SUPABASE_ANON_KEY) {
+  const supabaseUrl = process.env.SUPABASE_URL;
+  const supabaseAnonKey = process.env.SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
     return Response.json(
       { error: 'Supabase environment variables are not configured.' },
       { status: 500 }
     );
   }
 
-  const response = await fetch(`${SUPABASE_URL}/rest/v1/rpc/${functionName}`, {
+  const response = await fetch(`${supabaseUrl}/rest/v1/rpc/${functionName}`, {
     method: 'POST',
     headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      apikey: supabaseAnonKey,
+      Authorization: `Bearer ${supabaseAnonKey}`,
       'Content-Type': 'application/json'
     },
     body: '{}',
@@ -23,6 +24,9 @@ async function callSupabaseRpc(functionName) {
   });
 
   if (!response.ok) {
+    const errorText = await response.text();
+    console.error(`Supabase RPC ${functionName} failed:`, response.status, errorText);
+
     return Response.json(
       { error: 'Could not update visitor counter.' },
       { status: response.status }

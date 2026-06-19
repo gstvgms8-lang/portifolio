@@ -55,8 +55,7 @@ export const projects = [
     features: ['Cardápio online', 'Carrinho de pedidos', 'Pedido online', 'Painel da cozinha', 'Gestão de produtos'],
     tech: ['Next.js', 'Node.js', 'React', 'PostgreSQL', 'Painel Admin'],
     demoPath: '/demos/restaurante-delivery',
-    status: 'development',
-    statusLabel: 'Demonstrativo em desenvolvimento'
+    demoEmbedPath: '/demos/restaurante/index.html'
   }
 ];
 

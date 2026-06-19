@@ -46,10 +46,12 @@ export default function HomePage() {
                   </a>
                 ))}
               </div>
-              <div className="demo-development-note">
-                <span>Em desenvolvimento</span>
-                <strong>{developmentProjects.map((project) => project.title).join(', ')}</strong>
-              </div>
+              {developmentProjects.length > 0 && (
+                <div className="demo-development-note">
+                  <span>Em desenvolvimento</span>
+                  <strong>{developmentProjects.map((project) => project.title).join(', ')}</strong>
+                </div>
+              )}
             </div>
           </div>
         </section>

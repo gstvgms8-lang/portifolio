@@ -1,19 +1,28 @@
 'use client';
 
-import { ExternalLink, Monitor, Smartphone } from 'lucide-react';
-import { useState } from 'react';
+import { Maximize2, Monitor, Smartphone } from 'lucide-react';
+import { useRef, useState } from 'react';
 
 export default function DemoViewer({ project }) {
   const availableViews = project.demoViews || (project.demoDefaultView === 'desktop'
     ? ['desktop']
     : ['mobile', 'desktop']);
   const [viewMode, setViewMode] = useState(availableViews[0]);
+  const stageRef = useRef(null);
   const singleViewIcon = availableViews[0] === 'mobile'
     ? <Smartphone size={18} aria-hidden="true" />
     : <Monitor size={18} aria-hidden="true" />;
   const singleViewLabel = availableViews[0] === 'mobile'
     ? 'Visualização mobile'
     : 'Visualização desktop';
+
+  async function enterFullscreen() {
+    if (!stageRef.current || !stageRef.current.requestFullscreen) {
+      return;
+    }
+
+    await stageRef.current.requestFullscreen();
+  }
 
   if (!project.demoEmbedPath) {
     return (
@@ -53,10 +62,10 @@ export default function DemoViewer({ project }) {
             <Monitor size={18} aria-hidden="true" />
             Visualizar versão site desktop
           </button>
-          <a className="demo-link" href={project.demoEmbedPath} target="_blank" rel="noreferrer">
-            <ExternalLink size={18} aria-hidden="true" />
-            Abrir em tela cheia
-          </a>
+          <button className="demo-link" type="button" onClick={enterFullscreen}>
+            <Maximize2 size={18} aria-hidden="true" />
+            Tela cheia
+          </button>
         </div>
       ) : (
         <div className="demo-toolbar" aria-label="Visualização da demonstração">
@@ -64,14 +73,14 @@ export default function DemoViewer({ project }) {
             {singleViewIcon}
             {singleViewLabel}
           </span>
-          <a className="demo-link" href={project.demoEmbedPath} target="_blank" rel="noreferrer">
-            <ExternalLink size={18} aria-hidden="true" />
-            Abrir em tela cheia
-          </a>
+          <button className="demo-link" type="button" onClick={enterFullscreen}>
+            <Maximize2 size={18} aria-hidden="true" />
+            Tela cheia
+          </button>
         </div>
       )}
 
-      <div className={`device-stage ${viewMode === 'mobile' ? 'is-mobile' : 'is-desktop'}`}>
+      <div ref={stageRef} className={`device-stage ${viewMode === 'mobile' ? 'is-mobile' : 'is-desktop'}`}>
         {viewMode === 'mobile' ? (
           <div className="phone-shell">
             <div className="phone-notch" />

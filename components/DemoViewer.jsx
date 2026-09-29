@@ -1,110 +1,219 @@
 'use client';
 
-import { Maximize2, Monitor, Smartphone } from 'lucide-react';
-import { useRef, useState } from 'react';
+import {
+  ExternalLink,
+  Maximize2,
+  Monitor,
+  RotateCcw,
+  Smartphone
+} from 'lucide-react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import MotionCanvas from './MotionCanvas';
 
 export default function DemoViewer({ project }) {
-  const availableViews = project.demoViews || (project.demoDefaultView === 'desktop'
-    ? ['desktop']
-    : ['mobile', 'desktop']);
-  const [viewMode, setViewMode] = useState(availableViews[0]);
-  const stageRef = useRef(null);
-  const singleViewIcon = availableViews[0] === 'mobile'
-    ? <Smartphone size={18} aria-hidden="true" />
-    : <Monitor size={18} aria-hidden="true" />;
-  const singleViewLabel = availableViews[0] === 'mobile'
-    ? 'Visualização mobile'
-    : 'Visualização desktop';
+  const availableViews = useMemo(
+    () => project.demoViews || (project.demoDefaultView === 'desktop'
+      ? ['desktop']
+      : ['mobile', 'desktop']),
+    [project.demoViews, project.demoDefaultView]
+  );
 
-  async function enterFullscreen() {
-    if (!stageRef.current || !stageRef.current.requestFullscreen) {
-      return;
+  const [viewMode, setViewMode] = useState(availableViews[0]);
+  const [frameKey, setFrameKey] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [fullscreen, setFullscreen] = useState(false);
+  const stageRef = useRef(null);
+
+  useEffect(() => {
+    function onFullscreenChange() {
+      setFullscreen(document.fullscreenElement === stageRef.current);
     }
 
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
+  }, []);
+
+  async function enterFullscreen() {
+    if (!stageRef.current?.requestFullscreen) return;
     await stageRef.current.requestFullscreen();
+  }
+
+  function restartDemo() {
+    setLoading(true);
+    setFrameKey((value) => value + 1);
+  }
+
+  function changeView(mode) {
+    if (mode === viewMode) return;
+    setLoading(true);
+    setViewMode(mode);
   }
 
   if (!project.demoEmbedPath) {
     return (
-      <div className="demo-placeholder">
-        <div>
-          <div className="project-icon">{project.icon}</div>
-          <h2>Área reservada para Flutter Web</h2>
-          <p>
-            Depois que você gerar o build web do app Flutter, coloque os arquivos dentro de
-            <strong> /site/public/demos/{project.slug}</strong> e troque este placeholder por um iframe ou link direto.
-          </p>
-          <div className="tags">
-            {project.tech.map((tech) => <span className="tag" key={tech}>{tech}</span>)}
-          </div>
-        </div>
+      <div className="demo-empty-state">
+        <span className="section-index">{project.sku} / demonstração</span>
+        <h2>Demo ainda não publicada.</h2>
+        <p>O produto já está catalogado, mas o build navegável ainda não foi anexado a esta vitrine.</p>
       </div>
     );
   }
 
-  return (
-    <>
-      {availableViews.length > 1 ? (
-        <div className="demo-toolbar" aria-label="Opções de visualização da demonstração">
-          <button
-            className={`demo-toggle ${viewMode === 'mobile' ? 'is-active' : ''}`}
-            type="button"
-            onClick={() => setViewMode('mobile')}
-          >
-            <Smartphone size={18} aria-hidden="true" />
-            Visualizar app mobile
-          </button>
-          <button
-            className={`demo-toggle ${viewMode === 'desktop' ? 'is-active' : ''}`}
-            type="button"
-            onClick={() => setViewMode('desktop')}
-          >
-            <Monitor size={18} aria-hidden="true" />
-            Visualizar versão site desktop
-          </button>
-          <button className="demo-link" type="button" onClick={enterFullscreen}>
-            <Maximize2 size={18} aria-hidden="true" />
-            Tela cheia
-          </button>
-        </div>
-      ) : (
-        <div className="demo-toolbar" aria-label="Visualização da demonstração">
-          <span className="demo-toggle is-active">
-            {singleViewIcon}
-            {singleViewLabel}
-          </span>
-          <button className="demo-link" type="button" onClick={enterFullscreen}>
-            <Maximize2 size={18} aria-hidden="true" />
-            Tela cheia
-          </button>
-        </div>
-      )}
+  const mobile = viewMode === 'mobile';
 
-      <div ref={stageRef} className={`device-stage ${viewMode === 'mobile' ? 'is-mobile' : 'is-desktop'}`}>
-        {viewMode === 'mobile' ? (
-          <div className="phone-shell">
-            <div className="phone-notch" />
-            <iframe
-              className="demo-iframe phone-iframe"
-              src={project.demoEmbedPath}
-              title={`${project.title} - visualização mobile`}
-              loading="lazy"
-            />
+  return (
+    <div className="demo-showroom">
+      <div className="demo-command-bar">
+        <div className="demo-live-state">
+          <i aria-hidden="true"></i>
+          <div>
+            <strong>Demo ao vivo</strong>
+            <span>{project.sku} · ambiente demonstrativo</span>
           </div>
-        ) : (
-          <div className="desktop-shell">
-            <div className="monitor-bezel">
-              <iframe
-                className="demo-iframe desktop-iframe"
-                src={project.demoEmbedPath}
-                title={`${project.title} - visualização desktop`}
-                loading="lazy"
-              />
+        </div>
+
+        <div className="demo-command-actions">
+          {availableViews.length > 1 && (
+            <div className="demo-view-switch" role="group" aria-label="Escolher dispositivo">
+              <button
+                className={mobile ? 'is-active' : ''}
+                type="button"
+                onClick={() => changeView('mobile')}
+                aria-pressed={mobile}
+              >
+                <Smartphone size={15} aria-hidden="true" />
+                <span>Mobile</span>
+              </button>
+              <button
+                className={!mobile ? 'is-active' : ''}
+                type="button"
+                onClick={() => changeView('desktop')}
+                aria-pressed={!mobile}
+              >
+                <Monitor size={15} aria-hidden="true" />
+                <span>Desktop</span>
+              </button>
             </div>
-            <div className="monitor-stand" />
-          </div>
-        )}
+          )}
+
+          {availableViews.length === 1 && (
+            <span className="demo-single-view">
+              {mobile ? <Smartphone size={15} aria-hidden="true" /> : <Monitor size={15} aria-hidden="true" />}
+              {mobile ? 'Mobile' : 'Desktop'}
+            </span>
+          )}
+
+          <button className="demo-icon-action" type="button" onClick={restartDemo} title="Reiniciar demonstração">
+            <RotateCcw size={15} aria-hidden="true" />
+            <span>Reiniciar</span>
+          </button>
+
+          <a
+            className="demo-icon-action"
+            href={project.demoEmbedPath}
+            target="_blank"
+            rel="noreferrer"
+            title="Abrir demo isolada"
+          >
+            <ExternalLink size={15} aria-hidden="true" />
+            <span>Abrir</span>
+          </a>
+
+          <button className="demo-icon-action demo-fullscreen-action" type="button" onClick={enterFullscreen}>
+            <Maximize2 size={15} aria-hidden="true" />
+            <span>Tela cheia</span>
+          </button>
+        </div>
       </div>
-    </>
+
+      <div
+        ref={stageRef}
+        className={`demo-experience-stage ${mobile ? 'is-mobile' : 'is-desktop'} ${fullscreen ? 'is-fullscreen' : ''}`}
+      >
+        <div className="demo-stage-motion" aria-hidden="true">
+          <MotionCanvas variant={project.motion || 'floating-lines'} />
+        </div>
+        <div className="demo-stage-grid" aria-hidden="true"></div>
+
+        <div className="demo-device-zone">
+          {mobile ? (
+            <div className="premium-phone-shell">
+              <div className="premium-phone-top">
+                <span></span>
+                <i></i>
+              </div>
+              <div className="premium-phone-screen">
+                {loading && <DemoLoader label={project.shortTitle || project.title} />}
+                <iframe
+                  key={`${viewMode}-${frameKey}`}
+                  className="demo-app-frame"
+                  src={project.demoEmbedPath}
+                  title={`${project.title} - visualização mobile`}
+                  loading="eager"
+                  onLoad={() => setLoading(false)}
+                />
+              </div>
+              <div className="premium-phone-home" aria-hidden="true"></div>
+            </div>
+          ) : (
+            <div className="premium-desktop-shell">
+              <div className="browser-chrome">
+                <div className="browser-dots"><i></i><i></i><i></i></div>
+                <div className="browser-address">
+                  <span className="browser-lock">●</span>
+                  demo.gustavovieira.dev/{project.slug}
+                </div>
+                <span className="browser-menu">•••</span>
+              </div>
+              <div className="premium-desktop-screen">
+                {loading && <DemoLoader label={project.shortTitle || project.title} />}
+                <iframe
+                  key={`${viewMode}-${frameKey}`}
+                  className="demo-app-frame"
+                  src={project.demoEmbedPath}
+                  title={`${project.title} - visualização desktop`}
+                  loading="eager"
+                  onLoad={() => setLoading(false)}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+
+        <div className="demo-stage-meta" aria-hidden="true">
+          <span>{mobile ? 'MOBILE VIEW' : 'DESKTOP VIEW'}</span>
+          <span>{project.category.toUpperCase()}</span>
+        </div>
+      </div>
+
+      <div className="demo-showroom-footer">
+        <div>
+          <span>Ambiente</span>
+          <strong>Demonstrativo</strong>
+        </div>
+        <div>
+          <span>Dados</span>
+          <strong>Fictícios / seguros</strong>
+        </div>
+        <div>
+          <span>Interface</span>
+          <strong>{mobile ? 'Mobile' : 'Desktop'}</strong>
+        </div>
+        <p>Você pode navegar normalmente pela aplicação. Algumas integrações externas podem estar desabilitadas na versão pública.</p>
+      </div>
+    </div>
+  );
+}
+
+function DemoLoader({ label }) {
+  return (
+    <div className="demo-loader">
+      <div className="demo-loader-mark">GV</div>
+      <div>
+        <strong>Preparando {label}</strong>
+        <span>carregando experiência interativa</span>
+      </div>
+      <i aria-hidden="true"></i>
+    </div>
   );
 }

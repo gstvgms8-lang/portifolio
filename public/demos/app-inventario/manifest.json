@@ -1,11 +1,36 @@
-{
-  "name": "Inventario Demo",
-  "short_name": "Inventario",
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#F7F8FA",
-  "theme_color": "#0F766E",
-  "description": "Demo offline de controle de inventario para portfolio.",
-  "orientation": "portrait-primary",
-  "prefer_related_applications": false
+﻿{
+    "name": "Inventário Demo",
+    "short_name": "Inventário Demo",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#080A0D",
+    "theme_color": "#080A0D",
+    "description": "Demonstração interativa de inventário e contagem de estoque.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-maskable-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "icons/Icon-maskable-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "maskable"
+        }
+    ]
 }
+

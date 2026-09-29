@@ -1,6 +1,6 @@
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import Navbar from '../../../components/Navbar';
-import Footer from '../../../components/Footer';
 import DemoViewer from '../../../components/DemoViewer';
 import { getProject, projects } from '../../../data/projects';
 
@@ -8,40 +8,34 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
+export function generateMetadata({ params }) {
+  const project = getProject(params.slug);
+  return project ? { title: `Demo · ${project.title}`, description: `Demonstração navegável de ${project.title}.` } : {};
+}
+
 export default function DemoPage({ params }) {
   const project = getProject(params.slug);
-
-  if (!project) {
-    return (
-      <>
-        <Navbar />
-        <main className="container page-hero"><h1>Demo não encontrada.</h1></main>
-        <Footer />
-      </>
-    );
-  }
+  if (!project) notFound();
 
   return (
     <>
       <Navbar />
-      <main>
-        <section className="page-hero">
-          <div className="container">
-            <span className="badge">Demonstração Web</span>
-            <h1>{project.title}</h1>
-            <p>{project.description}</p>
-            <div className="hero-actions">
-              <Link className="btn" href={`/projetos/${project.slug}`}>Voltar ao projeto</Link>
+      <main className="demo-page-v2">
+        <section className="demo-page-head">
+          <div className="section-wrap demo-page-head-inner">
+            <div>
+              <span className="section-index">{project.sku} / demonstração</span>
+              <h1>{project.title}</h1>
             </div>
+            <Link href={`/projetos/${project.slug}`} className="text-link">← Voltar ao produto</Link>
           </div>
         </section>
-        <section>
-          <div className="container demo-frame">
+        <section className="demo-page-stage">
+          <div className="section-wrap">
             <DemoViewer project={project} />
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

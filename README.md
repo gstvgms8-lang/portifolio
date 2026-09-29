@@ -1,74 +1,71 @@
-# Central de Apresentacao de Produtos Finais
+# Portfólio — Gustavo Vieira
 
-Projeto Node.js sem dependencias externas, preparado para apresentar produtos finais em Flutter Web dentro de molduras mobile e desktop.
+Portfólio profissional construído em **Next.js** e organizado como um catálogo de produtos digitais. Os projetos são apresentados com contexto, recursos, stack e demonstrações Flutter Web navegáveis.
 
-## Como rodar
-
-```bash
-node server.js
-```
-
-ou:
+## Desenvolvimento
 
 ```bash
+npm install
 npm run dev
 ```
 
-Nao precisa rodar `npm install`.
+A aplicação fica disponível em `http://localhost:3000`.
 
-## Acesso padrao
+## Build
 
-- Usuario: `gustavo`
-- Senha: `123456`
-- Chave de seguranca: `CHECK-2026`
-
-## Onde colocar os builds Flutter Web
-
-Os builds finais devem ficar nestas pastas:
-
-```txt
-public/mobile/web/
-public/mobile/web2/
-public/desktop/web/
+```bash
+npm run build
+npm start
 ```
 
-Copie o conteudo de cada `build/web` para a pasta correspondente.
+## Estrutura principal
 
-## Ajuste importante do Flutter
+```text
+app/
+  page.js                 catálogo/home
+  projetos/[slug]/        página de produto
+  demos/[slug]/           demonstração em tela dedicada
+  api/                    analytics e contador
+components/               componentes visuais e motion
+data/projects.js          catálogo de projetos
+public/demos/              builds Flutter Web
+```
 
-Antes de gerar o build, ou depois copiando o arquivo final, confira o `base href` do `web/index.html`.
+## Cadastro de projetos
 
-Mobile:
+Os produtos exibidos no portfólio vivem em `data/projects.js`. Cada item pode definir categoria, plataforma, descrição, problema, solução, recursos, stack, dados de destaque e caminho da demo.
+
+## Motion
+
+A interface usa motion em quatro níveis:
+
+- animações de entrada;
+- motion de componentes e hover;
+- backgrounds vivos em Canvas;
+- superfícies glass/3D.
+
+Os efeitos pesados pausam fora da viewport e a experiência respeita `prefers-reduced-motion`.
+
+## Variáveis de ambiente
+
+As rotas de analytics usam Supabase:
+
+```env
+SUPABASE_URL=
+SUPABASE_ANON_KEY=
+ANALYTICS_SALT=
+ANALYTICS_OWN_DOMAINS=
+ANALYTICS_EXTENDED_FIELDS=false
+```
+
+Use um valor forte e exclusivo em `ANALYTICS_SALT`.
+
+## Demos Flutter Web
+
+Os builds ficam em subpastas de `public/demos/`. Ao gerar um build Flutter para uma subpasta, ajuste o `base href` do `index.html` para o caminho correspondente.
+
+Exemplo:
 
 ```html
-<base href="/mobile/web/">
+<base href="/demos/app-inventario/">
 ```
-
-Desktop:
-
-```html
-<base href="/desktop/web/">
-```
-
-## Onde trocar os links
-
-Os links exibidos na tela de projeto ficam em:
-
-```txt
-data/projetos.json
-```
-
-Os campos principais sao:
-
-```json
-"mobileUrl": "/mobile/web/",
-"desktopUrl": "/desktop/web/"
-```
-
-Para projetos somente mobile, use apenas `mobileUrl`, como:
-
-```json
-"mobileUrl": "/mobile/web2/"
-```
-
-O visual das molduras fica em `public/assets/css/styles.css`, e a troca entre app mobile e portal desktop fica em `public/assets/js/app.js`.

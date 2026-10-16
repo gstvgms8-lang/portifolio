@@ -69,3 +69,13 @@ Exemplo:
 ```html
 <base href="/demos/app-inventario/">
 ```
+
+
+## Vitrines criativas externas
+
+A seção `/#vitrines` usa o componente `components/CreativeShowcases.jsx` e os dados em `data/showcases.js`.
+
+- **INK//RIOT**: link externo publicado em `https://gallery-portifolio.vercel.app`.
+- **Nora Vesper**: conceito fictício, inicialmente sem link, até que a publicação seja concluída.
+
+Para ativar o segundo projeto, altere apenas o campo `url: null` do objeto `nora-vesper` para o endereço HTTPS confirmado. Isso ativa automaticamente o botão **Visitar projeto**. Links externos abrem em nova aba.

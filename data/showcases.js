@@ -26,7 +26,7 @@ export const showcases = [
     description: 'Conceito de site de links e publicação fictícia, com animações, responsividade e ambientação cinematográfica.',
     tags: ['Three.js', 'Animações 3D', 'Landing page'],
     theme: 'vesper',
-    status: 'Em preparação',
-    url: null
+    status: 'Publicado',
+    url: 'https://portif-lio-trabalhos.vercel.app'
   }
 ];

@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import HeroShowcase from '../components/HeroShowcase';
 import ProductCatalog from '../components/ProductCatalog';
+import CreativeShowcases from '../components/CreativeShowcases';
 import MotionCanvas from '../components/MotionCanvas';
 import MotionShowcase from '../components/MotionShowcase';
 import Reveal from '../components/Reveal';
@@ -38,6 +39,8 @@ export default function HomePage() {
           </div>
         </section>
 
+        <CreativeShowcases />
+
         <MotionShowcase />
 
         <section className="interaction-story" id="colecoes">
@@ -46,7 +49,7 @@ export default function HomePage() {
           </div>
           <div className="section-wrap interaction-grid">
             <Reveal variant="clip-reveal" className="interaction-copy">
-              <span className="section-index">02 / experiência</span>
+              <span className="section-index">03 / experiência</span>
               <h2>Interface não é maquiagem. É parte do produto.</h2>
               <p>Movimento, hierarquia e feedback visual entram quando ajudam a entender estado, ação e continuidade. Passe o cursor sobre o vidro para revelar a camada abaixo.</p>
             </Reveal>
@@ -62,7 +65,7 @@ export default function HomePage() {
           <div className="section-wrap">
             <Reveal className="section-heading" variant="fade-rise">
               <div>
-                <span className="section-index">03 / processo</span>
+                <span className="section-index">04 / processo</span>
                 <h2>Da operação confusa ao software utilizável.</h2>
               </div>
               <p>O trabalho começa pelo processo e termina em uma ferramenta que alguém consegue usar de verdade.</p>

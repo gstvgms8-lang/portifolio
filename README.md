@@ -76,6 +76,6 @@ Exemplo:
 A seção `/#vitrines` usa o componente `components/CreativeShowcases.jsx` e os dados em `data/showcases.js`.
 
 - **INK//RIOT**: link externo publicado em `https://gallery-portifolio.vercel.app`.
-- **Nora Vesper**: conceito fictício, inicialmente sem link, até que a publicação seja concluída.
+- **Nora Vesper**: experiência cinematográfica fictícia publicada em `https://portif-lio-trabalhos.vercel.app`.
 
-Para ativar o segundo projeto, altere apenas o campo `url: null` do objeto `nora-vesper` para o endereço HTTPS confirmado. Isso ativa automaticamente o botão **Visitar projeto**. Links externos abrem em nova aba.
+Os dois projetos têm links ativos no botão **Visitar projeto** e abrem em uma nova aba. Para trocar endereços no futuro, altere o campo `url` de cada objeto em `data/showcases.js`.

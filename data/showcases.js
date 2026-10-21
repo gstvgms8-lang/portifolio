@@ -28,5 +28,18 @@ export const showcases = [
     theme: 'vesper',
     status: 'Publicado',
     url: 'https://portif-lio-trabalhos.vercel.app'
+  },
+  {
+    id: 'lyra-valen',
+    number: '03',
+    category: 'Portfólio literário interativo',
+    title: 'Lyra Valen',
+    subtitle: 'UM UNIVERSO ENTRE PÁGINAS',
+    headline: 'Um observatório de histórias onde os livros ganham vida em profundidade.',
+    description: 'Site-conceito para uma escritora fictícia, com biblioteca de cinco obras, leitura de trechos, mapa explorável e apresentações cinematográficas.',
+    tags: ['WebGL + CSS 3D', 'Narrativa interativa', 'Sites para autores'],
+    theme: 'lyra',
+    status: 'Publicado',
+    url: 'https://port-books.vercel.app'
   }
 ];

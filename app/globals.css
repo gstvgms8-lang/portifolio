@@ -525,3 +525,70 @@ button{color:inherit}
   .creative-showcase-topline{align-items:flex-start;flex-direction:column}
   .creative-preview-caption{font-size:8px}
 }
+
+
+/* Lyra Valen: identidade própria para o portfólio literário, sem imagem externa. */
+.creative-showcase-card--lyra{background:#0c1c20;border-color:rgba(214,194,137,.27)}
+.creative-showcase-card--lyra:hover{border-color:rgba(227,200,149,.65)}
+.creative-preview--lyra{
+  background:
+    radial-gradient(ellipse at 50% 43%,rgba(68,139,127,.39),transparent 58%),
+    linear-gradient(160deg,#03151d 0%,#0c3337 57%,#04171f 100%);
+  perspective:900px;
+}
+.creative-preview--lyra .creative-preview-lines{
+  background:repeating-linear-gradient(102deg,transparent 0 39px,rgba(210,224,194,.055) 40px,transparent 41px 81px);
+}
+.creative-preview--lyra .creative-preview-orbit{
+  width:390px;height:235px;top:47%;
+  border-color:rgba(228,203,150,.44);
+  transform:translate(-50%,-50%) rotateX(65deg) rotate(-21deg);
+  box-shadow:0 0 0 27px rgba(228,203,150,.038),0 0 0 66px rgba(228,203,150,.015);
+}
+.creative-showcase-card--lyra:hover .creative-preview-orbit{
+  transform:translate(-50%,-50%) rotateX(65deg) rotate(7deg) scale(1.04);
+}
+.creative-preview--lyra .creative-preview-overline{color:rgba(240,222,181,.69)}
+.creative-preview--lyra .creative-preview-number{top:23px;bottom:auto;color:rgba(238,216,172,.65)}
+.creative-preview--lyra .creative-preview-book{
+  position:absolute;z-index:1;top:40px;left:50%;height:164px;width:125px;
+  background:radial-gradient(circle at 50% 40%,#1c5654,#0a282f 69%);
+  border:2px double rgba(235,204,148,.87);
+  outline:1px solid rgba(226,205,164,.28);
+  outline-offset:-8px;
+  box-shadow:8px 12px 0 rgba(2,16,22,.83),13px 20px 33px rgba(0,0,0,.65),0 0 50px rgba(114,207,188,.16);
+  transform:translateX(-50%) rotate(-7deg) rotateY(-18deg);
+  transform-origin:center;
+  transition:transform .75s cubic-bezier(.2,.78,.2,1),box-shadow .75s ease;
+}
+.creative-showcase-card--lyra:hover .creative-preview-book{
+  transform:translateX(-50%) translateY(-7px) rotate(-1deg) rotateY(-7deg);
+  box-shadow:9px 20px 0 rgba(2,16,22,.83),16px 28px 40px rgba(0,0,0,.7),0 0 65px rgba(114,207,188,.25);
+}
+.creative-preview-book-crest{
+  position:absolute;top:18px;left:50%;transform:translateX(-50%);
+  color:#e8d1a2;font:30px Georgia,serif;
+}
+.creative-preview-book-stem{position:absolute;width:2px;height:70px;top:62px;left:50%;background:#d6c28d;transform:translateX(-50%);opacity:.88}
+.creative-preview-book-branch{position:absolute;top:78px;left:50%;width:46px;height:2px;background:#d6c28d;transform-origin:left center;opacity:.78}
+.creative-preview-book-branch--left{transform:rotate(-148deg)}
+.creative-preview-book-branch--right{transform:rotate(-32deg)}
+.creative-preview-book-rules{position:absolute;bottom:17px;left:19px;right:19px;border-top:1px solid rgba(230,207,162,.6)}
+.creative-preview--lyra .creative-preview-wordmark{
+  position:absolute;z-index:2;bottom:40px;left:10px;right:10px;
+  font-family:Georgia,"Times New Roman",serif;font-weight:400;
+  font-size:clamp(38px,4.1vw,55px);letter-spacing:-.055em;
+  color:#f8e9ce;text-shadow:0 3px 22px #03151fea;
+}
+.creative-preview--lyra .creative-preview-wordmark span{color:#ddc28d}
+.creative-preview--lyra .creative-preview-caption{
+  position:absolute;z-index:2;bottom:18px;margin:0;
+  font-size:9px;letter-spacing:.22em;color:#d7c39d;
+}
+@media(max-width:390px){
+  .creative-preview--lyra .creative-preview-wordmark{font-size:41px}
+  .creative-preview--lyra .creative-preview-caption{font-size:8px;letter-spacing:.15em}
+}
+@media(prefers-reduced-motion:reduce){
+  .creative-preview--lyra .creative-preview-book{transition:none}
+}

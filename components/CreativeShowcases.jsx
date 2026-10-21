@@ -22,9 +22,18 @@ export default function CreativeShowcases() {
                   <div className="creative-preview-lines" />
                   <div className="creative-preview-orbit" />
                   <span className="creative-preview-overline">GV STUDIO / DIGITAL EXPERIENCE</span>
+                  {showcase.theme === 'lyra' && (
+                    <div className="creative-preview-book" aria-hidden="true">
+                      <span className="creative-preview-book-crest">✧</span>
+                      <span className="creative-preview-book-stem" />
+                      <span className="creative-preview-book-branch creative-preview-book-branch--left" />
+                      <span className="creative-preview-book-branch creative-preview-book-branch--right" />
+                      <span className="creative-preview-book-rules" />
+                    </div>
+                  )}
                   <strong className="creative-preview-wordmark">{showcase.title}<span>.</span></strong>
                   <span className="creative-preview-caption">{showcase.subtitle}</span>
-                  <span className="creative-preview-number">{showcase.number} / 02</span>
+                  <span className="creative-preview-number">{showcase.number} / {String(showcases.length).padStart(2, '0')}</span>
                 </div>
 
                 <div className="creative-showcase-content">
